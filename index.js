@@ -50,34 +50,43 @@ const questions = [
         "The Unlicense",
       ],
     },
+    // {
+    //   type: "confirm",
+    //   message: "Were there others who have contributed to this project?",
+    //   name: "Contribute",
+    // },
     {
       type: "input",
       message:
         "If there are any additional contributors on this project, provide their names",
-      name: "Contributing",
+      name: "Contributors",
     },
     {
       type: "input",
       message: "Description of tests performed on this project",
       name: "Tests",
     },
-    {
-      type: "input",
-      message: "FAQ",
-      name: "Questions",
-    },
+    // {
+    //   type: "input",
+    //   message: "FAQ",
+    //   name: "Questions",
+    // },
   ]),
 ];
 
-// // function to write README file
-// function writeToFile(fileName, data) {
-//   fs.writeFile("README.md", "", function (error) {
-//     if (error) {
-//       return console.log(error);
-//     }
-//     console.log("file saved");
-//   });
-// }
+// function to write README file
+  fs.writeFile(
+    "README.md",
+    `
+  `,
+    function (error) {
+      if (error) {
+        return console.log(error);
+      }
+      console.log("file saved");
+    }
+  );
+}
 
 // // function to initialize program
 // function init() {}
