@@ -24,11 +24,6 @@ inquirer.prompt([
     message: "Provide a description of your project",
     name: "Description",
   },
-  // {
-  //   type: "input",
-  //   message: "List a Table of Contents for you project",
-  //   name: "Table of Contents",
-  // },
   {
     type: "input",
     message: "Provide installation method",
@@ -52,13 +47,9 @@ inquirer.prompt([
       "MIT License",
       "Boost Software License 1.0",
       "The Unlicense",
+      "None",
     ],
   },
-  // {
-  //   type: "confirm",
-  //   message: "Were there others who have contributed to this project?",
-  //   name: "Contribute",
-  // },
   {
     type: "input",
     message:
@@ -70,47 +61,57 @@ inquirer.prompt([
     message: "Description of tests performed on this project",
     name: "Tests",
   },
-  // {
-  //   type: "input",
-  //   message: "FAQ",
-  //   name: "Questions",
-  // },
-]);
+  {
+    type: "input",
+    message: "For more information, please contact, ${Email}",
+    name: "Questions",
+  },
+]).then(function(res){
+console.log(
+  res.Title,
+  res.Description,
+  res.Installation,
+  res.Usage,
+  res.Contributors,
+  res.License,
+  res.Tests,
+  res.Questions,
+);
+});
 
 // function to write README file
 fs.writeFile(
-  "README.md",
-  ` README project \${Title}
+"README.md",
+` README project ${Title}
 
-  ## Table of Contents:
-  
-  - Description
-  - Installation
-  - Usage
-  - License
-  - Contributions
-  - Tests
-  - Questions
-  
-  ## Project Description
-  
-  \${Description}
-  
-  ## Installation
-  
-  `${Installation}`
+## Table of Contents:
+
+- Description
+- Installation
+- Usage
+- License
+- Contributions
+- Tests
+- Questions
+
+## Project Description
+
+${Description}
+
+## Installation
+
+```${Installation}```
   
   ## Usage
   
-  To run the program, in command line, type
+  To run the program, in command line, enter
   
   ```
   node index.js
   ```
   
-  complete the questions as prompted
+  and complete the questions as prompted.
   `,
-  
   function (error) {
     if (error) {
       return console.log(error);
