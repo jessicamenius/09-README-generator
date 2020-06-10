@@ -24,11 +24,11 @@ inquirer.prompt([
     message: "Provide a description of your project",
     name: "Description",
   },
-  {
-    type: "input",
-    message: "Provide installation method",
-    name: "Installation",
-  },
+  // {
+  //   type: "input",
+  //   message: "Provide installation method",
+  //   name: "Installation",
+  // },
   {
     type: "input",
     message: "How will this project be utilized?",
@@ -82,7 +82,7 @@ console.log(
 // function to write README file
 fs.writeFile(
 "README.md",
-` README project ${Title}
+` # README project: ${Title}
 
 ## Table of Contents:
 
@@ -96,22 +96,29 @@ fs.writeFile(
 
 ## Project Description
 
+```
 ${Description}
+```
 
 ## Installation
 
-```${Installation}```
-  
-  ## Usage
-  
-  To run the program, in command line, enter
-  
-  ```
-  node index.js
-  ```
-  
-  and complete the questions as prompted.
-  `,
+Before running the program, in command line or terminal run the below commands
+
+```
+${Installation}
+```
+
+## Usage
+
+
+
+```
+node index.js
+```
+
+and complete the questions as prompted.
+`,
+,
   function (error) {
     if (error) {
       return console.log(error);
