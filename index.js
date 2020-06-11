@@ -2,134 +2,148 @@ var inquirer = require("inquirer");
 var axios = require("axios");
 var fs = require("fs");
 
+inquirer
+  .prompt({
+    message: "Enter your GitHub username",
+    name: "username",
+  })
+  .then(function ({ username }) {
+    const queryUrl = `https://api.github.com/users/${username}`;
+    // console.log(queryUrl);
+
+    axios.get(queryUrl).then((res) => {
+      const githubLink = res.data.tml_url;
+      const email = res.data.email;
+      const avatarURL = res.data.avatar_url;
+
+      // console.log(githubLink);
+      // console.log(email);
+      // console.log(avatarURL);
+
+      // array of questions for user
+
+      inquirer
+        .prompt([
+          {
+            type: "input",
+            message: "Enter title of your project",
+            name: "title",
+          },
+          {
+            type: "input",
+            message: "Provide a description of your project",
+            name: "desc",
+          },
+          {
+            type: "input",
+            message: "Provide installation method",
+            name: "install",
+          },
+          {
+            type: "input",
+            message: "How will this project be utilized?",
+            name: "usage",
+          },
+          {
+            type: "list",
+            message: "Which licenses does this project use?",
+            name: "license",
+            choices: [
+              "GNU AGPLv3",
+              "GNU GPLv3",
+              "GNU LGPLv3",
+              "Mozilla Public License 2.0",
+              "Apache License 2.0",
+              "MIT License",
+              "Boost Software License 1.0",
+              "The Unlicense",
+              "None",
+            ],
+          },
+          {
+            type: "confirm",
+            message: "Were there additional contributors on this project?",
+            name: "contributors",
+          },
+          {
+            type: "input",
+            message:
+              "If there are any additional contributors on this project, provide their names. If none, enter N/A",
+            name: "contributorNames",
+          },
+          {
+            type: "input",
+            message: "Description of tests performed on this project",
+            name: "test",
+          },
+          {
+            type: "input",
+            message: "For further inquiries, provide an email address",
+            name: "contact",
+          },
+        ])
+        .then(function (res) {
+          // console.log(
+          //   res.title,
+          //   res.desc,
+          //   res.install,
+          //   res.usage,
+          //   res.contributors,
+          //   res.license,
+          //   res.test,
+          //   res.contact
+          // );
+          if (res.contributors === true) {
+            return;
+          }
+        });
+    });
+  });
+
 // array of questions for user
-inquirer.prompt([
-  {
-    type: "input",
-    message: "Enter your github name",
-    name: "UserName",
-  },
-  {
-    type: "input",
-    message: "Enter your email address",
-    name: "Email",
-  },
-  {
-    type: "input",
-    message: "Enter title of your project",
-    name: "Title",
-  },
-  {
-    type: "input",
-    message: "Provide a description of your project",
-    name: "Description",
-  },
-  // {
-  //   type: "input",
-  //   message: "Provide installation method",
-  //   name: "Installation",
-  // },
-  {
-    type: "input",
-    message: "How will this project be utilized?",
-    name: "Usage",
-  },
-  {
-    type: "list",
-    message: "Which licenses does this project use?",
-    name: "License",
-    choices: [
-      "GNU AGPLv3",
-      "GNU GPLv3",
-      "GNU LGPLv3",
-      "Mozilla Public License 2.0",
-      "Apache License 2.0",
-      "MIT License",
-      "Boost Software License 1.0",
-      "The Unlicense",
-      "None",
-    ],
-  },
-  {
-    type: "input",
-    message:
-      "If there are any additional contributors on this project, provide their names. If none, enter N/A",
-    name: "Contributors",
-  },
-  {
-    type: "input",
-    message: "Description of tests performed on this project",
-    name: "Tests",
-  },
-  {
-    type: "input",
-    message: "For more information, please contact, ${Email}",
-    name: "Questions",
-  },
-]).then(function(res){
-console.log(
-  res.Title,
-  res.Description,
-  res.Installation,
-  res.Usage,
-  res.Contributors,
-  res.License,
-  res.Tests,
-  res.Questions,
-);
-});
 
-// function to write README file
-fs.writeFile(
-"README.md",
-` # README project: ${Title}
+// // function to write README file
+// fs.writeFile(
+// "README.md",
+// `# README project: ${res.Title}
 
-## Table of Contents:
+// ## Table of Contents:
 
-- Description
-- Installation
-- Usage
-- License
-- Contributions
-- Tests
-- Questions
+// - Description
+// - Installation
+// - Usage
+// - License
+// - Contributions
+// - Tests
+// - Questions
 
-## Project Description
+// ## Project Description
 
-```
-${Description}
-```
+// ```
+// ${res.Description}
+// ```
 
-## Installation
+// ## Installation
 
-Before running the program, in command line or terminal run the below commands
+// Before running the program, in command line or terminal run the below commands
 
-```
-${Installation}
-```
+// ```
+// ${res.Installation}
+// ```
 
-## Usage
+// ## Usage
 
+// ```
+// ${res.Usage}
+// ```
 
+// and complete the questions as prompted.
+// `,
+//   function (error) {
+//     if (error) {
+//       return console.log(error);
+//     } else{
+//       console.log("file saved")}
 
-```
-node index.js
-```
-
-and complete the questions as prompted.
-`,
-,
-  function (error) {
-    if (error) {
-      return console.log(error);
-    }
-    console.log("file saved");
-  }
-);
-
-// // function to initialize program
-// function init() {
-// }
-
-// // function call to initialize program
-// init();
+//   }
+// );
