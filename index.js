@@ -70,6 +70,7 @@ inquirer
             message:
               "If there are any additional contributors on this project, provide their names. If none, enter N/A",
             name: "contributorNames",
+            when: (answers) => answers.contributors === true,
           },
           {
             type: "input",
@@ -93,57 +94,15 @@ inquirer
           //   res.test,
           //   res.contact
           // );
-          if (res.contributors === true) {
-            return;
+          if (res.contributors === false) {
+            res.contributorNames = "None";
           }
+          fs.writeFile("README.md", "test", function (err) {
+            if (err) {
+              return console.log(err);
+            }
+            console.log("file saved");
+          });
         });
     });
   });
-
-// array of questions for user
-
-// // function to write README file
-// fs.writeFile(
-// "README.md",
-// `# README project: ${res.Title}
-
-// ## Table of Contents:
-
-// - Description
-// - Installation
-// - Usage
-// - License
-// - Contributions
-// - Tests
-// - Questions
-
-// ## Project Description
-
-// ```
-// ${res.Description}
-// ```
-
-// ## Installation
-
-// Before running the program, in command line or terminal run the below commands
-
-// ```
-// ${res.Installation}
-// ```
-
-// ## Usage
-
-// ```
-// ${res.Usage}
-// ```
-
-// and complete the questions as prompted.
-// `,
-//   function (error) {
-//     if (error) {
-//       return console.log(error);
-//     } else{
-//       console.log("file saved")}
-
-//   }
-// );
