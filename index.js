@@ -97,12 +97,37 @@ inquirer
           if (res.contributors === false) {
             res.contributorNames = "None";
           }
-          fs.writeFile("README.md", "test", function (err) {
-            if (err) {
-              return console.log(err);
+          fs.writeFile(
+            "README.md",
+            `
+            # ${res.title}
+
+            ## Table of Contents:
+              - Description
+              - Installation
+              - Usage
+              - License
+              - Contributions
+              - Tests
+              - Questions
+          <br>
+          ## Project Description
+              ${res.desc}
+          <br>
+          ## Installation
+          <br>
+            Before running the program, in command line or terminal run the below commands
+            ${res.install}
+          <br>
+          ## Usage
+          To run the program, in command line, run node index.js and complete the questions as prompted.`,
+            function (err) {
+              if (err) {
+                console.log(err);
+              }
+              console.log("File created");
             }
-            console.log("file saved");
-          });
+          );
         });
     });
   });
