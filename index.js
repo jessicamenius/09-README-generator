@@ -100,9 +100,9 @@ inquirer
           fs.writeFile(
             "README.md",
             `
-            # ${res.title}
+            ${res.title}
 
-            ## Table of Contents:
+          Table of Contents:
               - Description
               - Installation
               - Usage
@@ -110,17 +110,17 @@ inquirer
               - Contributions
               - Tests
               - Questions
-          <br>
-          ## Project Description
+
+Project Description
               ${res.desc}
-          <br>
-          ## Installation
-          <br>
+
+Installation
+
             Before running the program, in command line or terminal run the below commands
             ${res.install}
-          <br>
-          ## Usage
-          To run the program, in command line, run node index.js and complete the questions as prompted.`,
+
+Usage`,
+
             function (err) {
               if (err) {
                 console.log(err);
