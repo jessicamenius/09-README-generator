@@ -1,5 +1,5 @@
 
-# homework 9
+# homework 9 - read me generator
 
 ## Table of Contents:
 
@@ -12,11 +12,11 @@
 - Questions
 
 ## Project Description
-doing my homework
+read me homework
 
 
 ## Installation
-inquirer, fs, axios
+inquirer, axios, fs
 
 
 ## Usage
@@ -24,7 +24,7 @@ to create readmes
 
 
 ## License
-GNU AGPLv3
+None
 
 
 ## Contributors

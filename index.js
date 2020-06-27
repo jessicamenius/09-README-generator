@@ -116,7 +116,7 @@ ${res.license}
 ${res.contributorNames}
 
 ## Tests performed
-${res.tests}
+${res.test}
 
 ## Questions
 
