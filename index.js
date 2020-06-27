@@ -12,15 +12,8 @@ inquirer
     // console.log(queryUrl);
 
     axios.get(queryUrl).then((res) => {
-      const githubLink = res.data.tml_url;
-      const email = res.data.email;
+      const githubLink = res.data.html_url;
       const avatarURL = res.data.avatar_url;
-
-      // console.log(githubLink);
-      // console.log(email);
-      // console.log(avatarURL);
-
-      // array of questions for user
 
       inquirer
         .prompt([
@@ -84,42 +77,54 @@ inquirer
           },
         ])
         .then(function (res) {
-          // console.log(
-          //   res.title,
-          //   res.desc,
-          //   res.install,
-          //   res.usage,
-          //   res.contributors,
-          //   res.license,
-          //   res.test,
-          //   res.contact
-          // );
           if (res.contributors === false) {
             res.contributorNames = "None";
           }
+
           fs.writeFile(
             "README.md",
             `
-            ${res.title}
+# ${res.title}
 
-          Table of Contents:
-              - Description
-              - Installation
-              - Usage
-              - License
-              - Contributions
-              - Tests
-              - Questions
+## Table of Contents:
 
-Project Description
-              ${res.desc}
+- Description
+- Installation
+- Usage
+- License
+- Contributors (if applicable)
+- Tests Performed
+- Questions
 
-Installation
+## Project Description
+${res.desc}
 
-            Before running the program, in command line or terminal run the below commands
-            ${res.install}
 
-Usage`,
+## Installation
+${res.install}
+
+
+## Usage
+${res.usage}
+
+
+## License
+${res.license}
+
+
+## Contributors
+${res.contributorNames}
+
+## Tests performed
+${res.tests}
+
+## Questions
+
+For further inquiries, please email me: ${res.contact}
+
+Visit my gihub at: ${githubLink}
+${avatarURL}
+`,
 
             function (err) {
               if (err) {

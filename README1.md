@@ -1,36 +1,57 @@
-` # README project: \${Title}
+# README project: \${title}
 
 ## Table of Contents:
 
+- Title
 - Description
+- Table of Contents
 - Installation
 - Usage
 - License
-- Contributions
+- Contributors
 - Tests
 - Questions
 
 ## Project Description
 
 ```
-${Description}
+${desc}
 ```
 
 ## Installation
 
-Before running the program, in command line or terminal run the below commands
-
 ```
-${Installation}
+${install}
 ```
 
 ## Usage
 
-To run the program, in command line, enter
-
 ```
-node index.js
+${usage}
 ```
 
-and complete the questions as prompted.
-`,
+## License
+
+```
+${license}
+```
+
+## Contributors
+
+```
+${contributorNames}
+```
+
+## Tests
+
+What tests were performed?
+
+```
+${tests}
+```
+
+## Questions
+
+For further inquiries, please email: ${contact}
+Visit my gihub at: ${githubLink}
+\${avatarURL}
